@@ -1,0 +1,19 @@
+{% extends 'home/header.html' %}
+
+{% if home_active %}
+{% block home_active %}active {% endblock %}
+{% endif %}
+
+{% block dropdown %}
+	{% for dept in departments %}
+	<li><a href="/department/{{dept.department_number}}">{{dept.department_short_name}}</a></li>
+	{% endfor %}
+{% endblock %}
+
+
+{% block body %}
+<br><br>
+<h1>This is Home</h1>
+{% endblock %}
+
+{% include 'home/footer.html' %}
