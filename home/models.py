@@ -57,14 +57,18 @@ class Designation(models.Model):
 class Employee(models.Model):
 	employee_id = models.CharField(max_length=10, unique=True, primary_key=True, validators=[Validators['Emp_No']])
 	name = models.CharField(max_length=200)
-	personal_phone_no = models.CharField(max_length=12, unique=True, validators=[Validators['Phone_No']])
-	email_id = models.EmailField(unique=True)
+	personal_phone_no = models.CharField(max_length=12,validators=[Validators['Phone_No']])
+	other_phone_no = models.CharField(max_length=12,validators=[Validators['Phone_No']])
+	email_id = models.EmailField()
 	department_no = models.ForeignKey(Department, on_delete=models.CASCADE)
 	designation_no = models.ForeignKey(Designation, on_delete=models.CASCADE)
+	quarter_number = models.CharField(max_length=10)
+	residence_number = models.CharField(max_length=10)
+	office_number = models.CharField(max_length=10)
 	pub_date = models.DateTimeField('date published', default=datetime.datetime.now)
 
 	def __str__(self):
-		return self.employee_id
+		return self.name
 
 class Intercom(models.Model):
 	intercom_number = models.CharField(max_length=4, unique=True, primary_key=True,validators=[Validators['Intercom_No']])

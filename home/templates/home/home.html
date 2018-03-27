@@ -4,16 +4,55 @@
 {% block home_active %}active {% endblock %}
 {% endif %}
 
-{% block dropdown %}
+{% block deptdrop %}
 	{% for dept in departments %}
 	<li><a href="/department/{{dept.department_number}}">{{dept.department_short_name}}</a></li>
 	{% endfor %}
 {% endblock %}
 
+{% block desdrop %}
+	{% for des in designations %}
+	<li><a href="/designation/{{des.designation_number}}">{{des.designation_name}}</a></li>
+	{% endfor %}
+{% endblock %}
+
 
 {% block body %}
+
+
 <br><br>
-<h1>This is Home</h1>
+<h1 align="center">Welcome To Telecom</h1>
+<br><hr><br>
+<table id="searchTable" class="table table-condensed table-bordered table-hover" id="example">
+			<thead>
+				<th>Employee Name</th>
+				<th>Department Name</th>
+				<th>Designation</th>
+				<th>Phone Number</th>
+                <th>Office No</th>
+				<th>Residence No.(Quarter)</th>
+			</thead>
+			<tbody>
+			{% for emp in employees %}
+					<tr>
+					<td>{{emp.name}}</td>
+					<td>{{emp.department_no.department_name}}</td>
+					<td>{{emp.designation_no.designation_name}}</td>
+					<td>
+					{%if emp.personal_phone_no is not 0 %}
+					{{emp.personal_phone_no}},
+					{%elif emp.other_phone_no is not 0 %}
+					{{emp.other_phone_no}}
+					{%endif%}
+					</td>
+
+                    <td>{{emp.office_number}}</td>
+					<td>{{emp.residence_number}}({{emp.quarter_number}})</td>
+					</tr>
+            {% endfor %}
+			</tbody>
+		</table>
+
 {% endblock %}
 
 {% include 'home/footer.html' %}

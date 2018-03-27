@@ -1,7 +1,7 @@
 {% extends 'home/header.html' %}
 
-{% if department_active %}
-{% block department_active %}active {% endblock %}
+{% if sections_active %}
+{% block designation_active %}active {% endblock %}
 {% endif %}
 
 {% block deptdrop %}
@@ -16,17 +16,15 @@
 	{% endfor %}
 {% endblock %}
 
-
 {% block body %}
 
-
 <br><br>
-<h1 align="center">Welcome To {{department.department_name}}</h1>
+<h1 align="center">Welcome To {{designation.designation_name}}</h1>
 <br><hr><br>
 <table id="searchTable" class="table table-condensed table-bordered table-hover" id="example">
 			<thead>
 				<th>Employee Name</th>
-				<th>Designation</th>
+				<th>Department</th>
 				<th>Phone Number</th>
                 <th>Office No</th>
 				<th>Residence No.(Quarter)</th>
@@ -35,7 +33,7 @@
 			{% for emp in employees %}
 					<tr>
 					<td>{{emp.name}}</td>
-					<td>{{emp.designation_no.designation_name}}</td>
+					<td>{{emp.department_no.department_name}}</td>
 					<td>
 					{%if emp.personal_phone_no is not 0 %}
 					{{emp.personal_phone_no}},
@@ -50,6 +48,8 @@
             {% endfor %}
 			</tbody>
 		</table>
+
+
 {% endblock %}
 
 {% include 'home/footer.html' %}
