@@ -1,8 +1,6 @@
 {% extends 'home/header.html' %}
 
-{% if department_active %}
-{% block department_active %}active {% endblock %}
-{% endif %}
+
 
 {% block deptdrop %}
 	{% for dept in departments %}
@@ -10,9 +8,21 @@
 	{% endfor %}
 {% endblock %}
 
-{% block desdrop %}
-	{% for des in designations %}
-	<li><a href="/designation/{{des.designation_number}}">{{des.designation_name}}</a></li>
+{% block secdrop %}
+	{% for dept in sections %}
+	<li><a href="/department/{{dept.department_number}}">{{dept.department_short_name}}</a></li>
+	{% endfor %}
+{% endblock %}
+
+{% block cendrop %}
+	{% for dept in centers %}
+	<li><a href="/department/{{dept.department_number}}">{{dept.department_short_name}}</a></li>
+	{% endfor %}
+{% endblock %}
+
+{% block incdrop %}
+	{% for dept in incharges %}
+	<li><a href="/department/{{dept.department_number}}">{{dept.department_short_name}}</a></li>
 	{% endfor %}
 {% endblock %}
 
@@ -21,7 +31,7 @@
 
 
 <br><br>
-<h1 align="center">Welcome To {{department.department_name}}</h1>
+<h1 align="center">Details of {{department.department_name}}</h1>
 <br><hr><br>
 <table id="searchTable" class="table table-condensed table-bordered table-hover" id="example">
 			<thead>
@@ -51,5 +61,3 @@
 			</tbody>
 		</table>
 {% endblock %}
-
-{% include 'home/footer.html' %}

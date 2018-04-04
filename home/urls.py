@@ -4,5 +4,5 @@ urlpatterns=[
 path('',Index.as_view(), name='index'),
 #path('populate21/', view=PopulateFromCSV, name = 'populate'),
 path('department/<int:id>',Departments.as_view(), name='departments'),
-path('designation/<int:id>',Designations.as_view(), name='designations'),
+path('employees',Employees.as_view(), name='employees'),
     ]

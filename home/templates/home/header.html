@@ -26,10 +26,10 @@
 <nav class="navbar navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">Telecom</a>
+      <a class="navbar-brand {% block home_active %} {% endblock %}" href="/">Telecom</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="{% block home_active %} {% endblock %}"><a href="/">Home</a></li>
+      <li class="{% block employees_active %} {% endblock %}"><a href="/employees">All Employees</a></li>
       <li class="dropdown {% block departments_active %} {% endblock %}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Departments<span class="caret"></span></a>
         <ul class="dropdown-menu scrollable-menu" id="deptDropUl">
           <li>
@@ -39,15 +39,38 @@
           {% endblock %}
         </ul>
       </li>
-      <li class="dropdown {% block designation_active %} {% endblock %}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Designations<span class="caret"></span></a>
-        <ul class="dropdown-menu scrollable-menu" id="desDropUl">
+
+      <li class="dropdown {% block sections_active %} {% endblock %}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Sections<span class="caret"></span></a>
+        <ul class="dropdown-menu scrollable-menu" id="secDropUl">
           <li>
-             <input type="text" class="search" placeholder="Search.." id="desDropInp" onkeyup="searchDesDrop();">
+             <input type="text" class="search" placeholder="Search.." id="secDropInp" onkeyup="searchSecDrop();">
           </li>
-          {% block desdrop %}
+          {% block secdrop %}
           {% endblock %}
           </ul>
       </li>
+
+      <li class="dropdown {% block center_active %} {% endblock %}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Centers<span class="caret"></span></a>
+        <ul class="dropdown-menu scrollable-menu" id="cenDropUl">
+          <li>
+             <input type="text" class="search" placeholder="Search.." id="cenDropInp" onkeyup="searchCenDrop();">
+          </li>
+          {% block cendrop %}
+          {% endblock %}
+          </ul>
+      </li>
+
+      <li class="dropdown {% block incharge_active %} {% endblock %}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Incharges<span class="caret"></span></a>
+        <ul class="dropdown-menu scrollable-menu" id="incDropUl">
+          <li>
+             <input type="text" class="search" placeholder="Search.." id="incDropInp" onkeyup="searchIncDrop();">
+          </li>
+          {% block incdrop %}
+          {% endblock %}
+          </ul>
+      </li>
+
+
     </ul>
 
   </div>
@@ -56,3 +79,5 @@
 {% block body %}
 
 {% endblock %}
+
+{% include 'home/footer.html' %}

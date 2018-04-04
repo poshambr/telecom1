@@ -33,12 +33,19 @@ Validators = {
 # 	StorageName = Instance.RegistrationNumber + '.' + FileExtension
 # 	return 'student_photographs/{0}'.format(StorageName)
 
+class DeptType(models.Model):
+	type_number = models.CharField(max_length=10,primary_key=True)
+	type_name = models.CharField(max_length=100, unique=True)
+
+	def __str__(self):
+		return '%s %s' %(self.type_number, self.type_name)
 
 
 class Department(models.Model):
 	department_number = models.CharField(max_length=10, unique=True, primary_key=True, validators=[Validators['DeptNo']])
 	department_name = models.CharField(max_length=200, unique=True)
 	department_short_name = models.CharField(max_length=100, unique=True)
+	department_type = models.ForeignKey(DeptType, on_delete=models.CASCADE)
 	pub_date = models.DateTimeField('date published', default=datetime.datetime.now)
 
 
@@ -69,28 +76,3 @@ class Employee(models.Model):
 
 	def __str__(self):
 		return self.name
-
-class Intercom(models.Model):
-	intercom_number = models.CharField(max_length=4, unique=True, primary_key=True,validators=[Validators['Intercom_No']])
-	emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
-	pub_date = models.DateTimeField('date published', default=datetime.datetime.now)
-
-	def __str__(self):
-		return self.emp_id
-
-class Cug(models.Model):
-	cug_number = models.CharField(max_length=10, unique=True, primary_key=True, validators=[Validators['Cug_No']])
-	emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
-	plan = models.IntegerField(default=0, validators=[Validators['Plan_No']])
-	pub_date = models.DateTimeField('date published', default=datetime.datetime.now)
-
-	def __str__(self):
-		return self.cug_number
-
-class Quarter(models.Model):
-	quarter_number = models.CharField(max_length=10, unique=True, primary_key=True, validators=[Validators['Quarter_No']])
-	emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
-	pub_date = models.DateTimeField('date published', default=datetime.datetime.now)
-
-	def __str__(self):
-		return self.quarter_number
