@@ -6,7 +6,7 @@ from django.views.generic import *
 import csv
 from .constants import *
 
-'''
+
 def PopulateFromCSV(request):
 
 
@@ -29,7 +29,7 @@ def PopulateFromCSV(request):
 
     return HttpResponse("ok")
 
-
+'''
 def PopulateFromCSV(request):
 
 
