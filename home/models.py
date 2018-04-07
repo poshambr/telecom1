@@ -69,6 +69,7 @@ class Employee(models.Model):
 	personal_phone_no = models.CharField(max_length=12,validators=[Validators['Phone_No']])
 	other_phone_no = models.CharField(max_length=12,validators=[Validators['Phone_No']])
 	email_id = models.EmailField()
+	email_id2 = models.EmailField()
 	department_no = models.ForeignKey(Department, on_delete=models.CASCADE)
 	designation_no = models.ForeignKey(Designation, on_delete=models.CASCADE)
 	pub_date = models.DateTimeField('date published', default=datetime.datetime.now)
