@@ -56,10 +56,12 @@ class Department(models.Model):
 class Designation(models.Model):
 	designation_number = models.CharField(max_length=10, unique=True, primary_key=True, validators=[Validators['Desig_No']])
 	designation_name = models.CharField(max_length=200, unique=True)
+	designation_priority = models.CharField(max_length=10)
 	pub_date = models.DateTimeField('date published', default=datetime.datetime.now)
 
 	def __str__(self):
 		return '%s %s' %(self.designation_name, self.designation_number)
+
 
 class Employee(models.Model):
 	employee_id = models.CharField(max_length=10, unique=True, primary_key=True, validators=[Validators['Emp_No']])
@@ -69,10 +71,33 @@ class Employee(models.Model):
 	email_id = models.EmailField()
 	department_no = models.ForeignKey(Department, on_delete=models.CASCADE)
 	designation_no = models.ForeignKey(Designation, on_delete=models.CASCADE)
-	quarter_number = models.CharField(max_length=10)
-	residence_number = models.CharField(max_length=10)
-	office_number = models.CharField(max_length=10)
 	pub_date = models.DateTimeField('date published', default=datetime.datetime.now)
 
 	def __str__(self):
 		return self.name
+
+
+class Intercom(models.Model):
+	intercom_number = models.CharField(max_length=4, unique=True, primary_key=True,validators=[Validators['Intercom_No']])
+	emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
+	pub_date = models.DateTimeField('date published', default=datetime.datetime.now)
+
+	def __str__(self):
+		return self.emp_id
+
+class Cug(models.Model):
+	cug_number = models.CharField(max_length=10, unique=True, primary_key=True, validators=[Validators['Cug_No']])
+	emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
+	plan = models.IntegerField(default=0, validators=[Validators['Plan_No']])
+	pub_date = models.DateTimeField('date published', default=datetime.datetime.now)
+
+	def __str__(self):
+		return self.cug_number
+
+class Quarter(models.Model):
+	quarter_number = models.CharField(max_length=10, unique=True, primary_key=True, validators=[Validators['Quarter_No']])
+	emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
+	pub_date = models.DateTimeField('date published', default=datetime.datetime.now)
+
+	def __str__(self):
+		return self.quarter_number
