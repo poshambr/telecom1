@@ -81,6 +81,10 @@ class Index(TemplateView):
         return context
 
 
+def emp_prio_sort(a):
+    return a.designation_no.designation_priority
+
+
 class Employees(TemplateView):
     template_name = 'home/employees.html'
 
@@ -91,7 +95,12 @@ class Employees(TemplateView):
         context['sections'] = Department.objects.filter(department_type_id=C_section_type).order_by('department_name')
         context['incharges'] = Department.objects.filter(department_type_id=C_incharge_type).order_by('department_name')
         context['centers'] = Department.objects.filter(department_type_id=C_center_type).order_by('department_name')
-        context['employees'] = Employee.objects.all().order_by('name')
+        context['employees'] = Employee.objects.all()
+        for emp in context['employees']:
+            emp.cug_numbers = Cug.objects.filter(emp_id=emp)
+            emp.intercom = Intercom.objects.filter(emp_id=emp)
+            emp.quarter = Quarter.objects.filter(emp_id=emp)
+        sorted(context['employees'],key=emp_prio_sort)
         return context
 
 

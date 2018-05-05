@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'telecom',
         'USER': 'root',
-        'PASSWORD': 'wsdcadmin',
+        'PASSWORD': '',
         'HOST': 'localhost',
     }
 }

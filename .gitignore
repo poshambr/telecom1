@@ -2,3 +2,4 @@
 */migrations/*
 .idea/*
 .idea/workspace.xml
+.pyc

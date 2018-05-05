@@ -2,7 +2,7 @@
 <html lang="en">
 {% load staticfiles %}
 <head>
-  <title>Telecom</title>
+  <title>Telecom Center</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -26,9 +26,18 @@
 <nav class="navbar navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand {% block home_active %} {% endblock %}" href="/">Telecom</a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        <img src="{{ MEDIA_URL }}/media/img/logo.png" alt="telecom logo" height="40px" width="135px" style="margin:-10px;"/>
+      </a>
     </div>
+    <div class="collapse navbar-collapse" id="collapse">
     <ul class="nav navbar-nav">
+      <li class="{% block home_active %} {% endblock %}"><a href="/">Home</a></li>
       <li class="{% block employees_active %} {% endblock %}"><a href="/employees">All Employees</a></li>
       <li class="dropdown {% block departments_active %} {% endblock %}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Departments<span class="caret"></span></a>
         <ul class="dropdown-menu scrollable-menu" id="deptDropUl">
@@ -72,6 +81,7 @@
 
 
     </ul>
+    </div>
 
   </div>
 </nav>
